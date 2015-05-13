@@ -115,20 +115,13 @@
                 }
             }
 
-            var dataToSend = '{"data":"'.concat(content).concat(" \"}");
-
+            var dataToSend = '{"data":"'.concat(content).concat("\"}");
             $.ajax({
                 type: "POST",
                 url: "/Home/SendSchedule",
                 data: dataToSend,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (r) {
-                    alert("bun");
-                },
-                error: function (err) {
-                    alert("error ocurred");
-                }
             });
 
         }

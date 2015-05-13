@@ -102,6 +102,12 @@ namespace regLogApp.Controllers
             }
             return View(user);
         }
+        [HttpPost]
+        [System.Web.Services.WebMethod]
+        public string SendSchedule(string data)
+        {
+            return "Data received at " + DateTime.Now.ToString();
+        }
      
     }
 }
