@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using StorageService;
 using AzureSQLDB;
+using regLogApp.Models;
 using WebGrease.Css.Extensions;
 
 namespace regLogApp.Controllers
@@ -31,9 +32,13 @@ namespace regLogApp.Controllers
         {
             var user = User.Identity.Name;
             var files = _storageService.GetFilesList(user);
-            var links = files.Select(x => _storageService.GetDownloadLink(user, x));
+            var links = files.Select(x => new FileModel
+            {
+                ShowPath = x,
+                DownloadPath = _storageService.GetDownloadLink(user, x)
+            });
 
-            return View(files);
+            return View(links);
         }
 
         [HttpPost]

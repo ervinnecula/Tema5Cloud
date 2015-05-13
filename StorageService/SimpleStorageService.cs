@@ -51,7 +51,9 @@ namespace StorageService
             Stream stream;
             if (container != null)
             {
-                var blob = container.GetBlockBlobReference(blobString);
+                var index = blobString.IndexOf(container.Name) + container.Name.Length;
+                var newBlobString = blobString.Substring(index+1);
+                var blob = container.GetBlockBlobReference(newBlobString);
                 if (blob != null)
                 {
                     var policy = new SharedAccessBlobPolicy()
