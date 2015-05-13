@@ -1,4 +1,5 @@
-﻿@{
+﻿@using System
+@{
     ViewBag.Title = "Home Page";
 }
 <html>
@@ -132,6 +133,7 @@
             target.innerHTML = "";
         }
     </script>
-    @Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
 </body>
 </html>
