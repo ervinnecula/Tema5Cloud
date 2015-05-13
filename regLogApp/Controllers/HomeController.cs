@@ -5,10 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using AzureSQLDB;
+using System.Net;
 
 namespace regLogApp.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -30,14 +30,12 @@ namespace regLogApp.Controllers
             return View();
         }
         // GET: User
-        [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Register(User user)
         {
@@ -55,14 +53,12 @@ namespace regLogApp.Controllers
             return View(user);
         }
 
-        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public ActionResult Login(Models.LoginUser user)
         {
             if (ModelState.IsValid)
@@ -79,6 +75,12 @@ namespace regLogApp.Controllers
             }
             return View(user);
         }
-     
+        [HttpPost]
+        [System.Web.Services.WebMethod]
+        public string SendSchedule(string data)
+        {
+            return "Data received at " + DateTime.Now.ToString();
+        }
+
     }
 }

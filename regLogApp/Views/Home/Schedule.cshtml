@@ -1,5 +1,4 @@
-﻿@using System
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
 <html>
@@ -10,6 +9,7 @@
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
 </head>
 <body>
     <div class="top-menu">
@@ -108,24 +108,27 @@
 
             var content = new Array();
             var table = document.getElementById("schedule-table");
-            for (var i = 0, row; row = table.rows[i]; i++) {
+            for (var i = 1, row; row = table.rows[i]; i++) {
                 content.push(i);
                 for (var j = 0, col; col = row.cells[j]; j++) {
-                    content.push(row.innerHTML);
+                    content.push(col.innerHTML);
                 }
             }
-            alert("got here");
-            alert(content);
-            var jsonTable = JSON.stringify(content);
+
+            var dataToSend = '{"data":"'.concat(content).concat(" \"}");
+
             $.ajax({
                 type: "POST",
-                url: "Home/Schedule",
+                url: "/Home/SendSchedule",
+                data: dataToSend,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (msg) {
-                    alert('In Ajax');
+                success: function (r) {
+                    alert("bun");
                 },
-                data: jsonTable
+                error: function (err) {
+                    alert("error ocurred");
+                }
             });
 
         }
@@ -133,7 +136,6 @@
             target.innerHTML = "";
         }
     </script>
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/bootstrap")
 </body>
 </html>
