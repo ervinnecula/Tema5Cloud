@@ -5,12 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using AzureDb;
+using StorageService;
 
 namespace regLogApp.Controllers
 {
     [Authorize]
     public class HomeController : Controller
     {
+        private SimpleStorageService _storageService = new SimpleStorageService();
+
         public ActionResult Index()
         {
             return View();
@@ -21,6 +24,23 @@ namespace regLogApp.Controllers
             ViewBag.Message = "Your schedule page.";
 
             return View();
+        }
+
+        public ActionResult StorageTest()
+        {
+            var user = User.Identity.Name;
+            var files = _storageService.GetFilesList(user);
+            return View(files);
+        }
+
+        [HttpPost]
+        public ActionResult StorageTest(HttpPostedFileBase[] files)
+        {
+            var user = User.Identity.Name;
+            if(files != null)
+                _storageService.PutFiles(user, "orarSme", files);
+
+            return RedirectToAction("StorageTest");
         }
 
         public ActionResult Logout()
