@@ -1,0 +1,31 @@
+﻿@model System.Collections.Generic.IEnumerable<string>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Storage Test</title>
+</head>
+<body>
+<div>
+    <h3>Existing files for <b style="text-decoration: underline">@User.Identity.Name</b>
+    </h3>
+    <ul>
+        @foreach (var link in Model)
+        {
+            <li><a href="@link">@link</a></li>
+        }
+    </ul>
+
+    @using (Html.BeginForm("StorageTest", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" multiple="true" name="files"/>
+        <input type="submit" value="Upload these"/>
+    }
+</div>
+</body>
+</html>

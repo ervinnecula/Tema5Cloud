@@ -163,6 +163,7 @@
     <Content Include="Views\Home\Schedule.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <None Include="Views\Home\StorageTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -182,6 +183,10 @@
     <ProjectReference Include="..\AzureSQLDB\AzureSQLDB.csproj">
       <Project>{37432eb4-cf1e-4f99-9ef6-c953ae62f2a7}</Project>
       <Name>AzureSQLDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StorageService\StorageService.csproj">
+      <Project>{146cce4c-6a48-4e03-bb1a-6daa11d32a30}</Project>
+      <Name>StorageService</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
