@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AzureDb
+namespace AzureSQLDB
 {
     public class Class1
     {

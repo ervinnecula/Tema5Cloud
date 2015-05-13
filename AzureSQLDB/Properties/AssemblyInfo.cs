@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AzureDb")]
+[assembly: AssemblyTitle("AzureSQLDB")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AzureDb")]
+[assembly: AssemblyProduct("AzureSQLDB")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b49fc7ee-c989-4a4b-bc34-b09042d0e60c")]
+[assembly: Guid("b2fa9e64-334f-433b-8378-04e18e2470cd")]
 
 // Version information for an assembly consists of the following four values:
 //

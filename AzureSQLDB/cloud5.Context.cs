@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AzureDb
+namespace AzureSQLDB
 {
     using System;
     using System.Data.Entity;
@@ -25,6 +25,8 @@ namespace AzureDb
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Schedule> Schedules { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UsersSchedule> UsersSchedules { get; set; }
     }
 }

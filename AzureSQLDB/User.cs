@@ -10,13 +10,18 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AzureDb
+namespace AzureSQLDB
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class User
     {
+        public User()
+        {
+            this.UsersSchedules = new HashSet<UsersSchedule>();
+        }
+
         public int UserID { get; set; }
         [Required(ErrorMessage = "Please provide username", AllowEmptyStrings = false)]
         public string UserName { get; set; }
@@ -33,5 +38,7 @@ namespace AzureDb
         [RegularExpression(@"^([0-9a-zA-Z]([\+\-_\.][0-9a-zA-Z]+)*)+@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,3})$",
 ErrorMessage = "Please provide valid email id")]
         public string Email { get; set; }
+    
+        public virtual ICollection<UsersSchedule> UsersSchedules { get; set; }
     }
 }
