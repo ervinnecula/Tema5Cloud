@@ -45,9 +45,32 @@ namespace StorageService
             }
         }
 
-        public Stream GetFile(string blobString)
+        public string GetDownloadLink(string user, string blobString)
         {
-            return null;
+            var container = _client.GetContainerReference(user.ToLower());
+            Stream stream;
+            if (container != null)
+            {
+                var blob = container.GetBlockBlobReference(blobString);
+                if (blob != null)
+                {
+                    var policy = new SharedAccessBlobPolicy()
+                    {
+                        Permissions = SharedAccessBlobPermissions.Read,
+                        SharedAccessExpiryTime = DateTime.UtcNow.AddHours(1)
+                    };
+
+                    var headers = new SharedAccessBlobHeaders()
+                    {
+                        ContentDisposition = string.Format("attachment;filename=\"{0}\"", Path.GetFileName(blobString))
+                    };
+
+                    var sasToken = blob.GetSharedAccessSignature(policy, headers);
+                    return blob.Uri.AbsoluteUri + sasToken;
+                }
+            }
+
+            return string.Empty;
         }
     }
 }

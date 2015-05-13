@@ -180,9 +180,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AzureDb\AzureDb.csproj">
-      <Project>{91d443dd-70a8-4acf-89ec-6cc96d9b8b69}</Project>
-      <Name>AzureDb</Name>
+    <ProjectReference Include="..\AzureSQLDB\AzureSQLDB.csproj">
+      <Project>{37432eb4-cf1e-4f99-9ef6-c953ae62f2a7}</Project>
+      <Name>AzureSQLDB</Name>
     </ProjectReference>
     <ProjectReference Include="..\StorageService\StorageService.csproj">
       <Project>{146cce4c-6a48-4e03-bb1a-6daa11d32a30}</Project>
