@@ -1,0 +1,104 @@
+﻿body {
+    margin: 0 auto;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+#header {
+    height: 200px;
+    width: 100%;
+    background-color: #4C8AD0;
+    color: white;
+}
+
+.top-menu ul li {
+    float: left;
+    width: 33.3%;
+    height: 100%;
+    list-style-type: none;
+    color: #fff;
+    font-size: 17px;
+    text-align: center;
+    padding-top: 17px;
+    transition: background-color 0.3s;
+}
+
+.home:hover {
+    background-color: #B3CBEF;
+    cursor: pointer;
+}
+
+.schedule:hover {
+    background-color: #B3CBEF;
+    cursor: pointer;
+}
+
+.top-menu ul li a {
+    margin: 0 auto;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.top-menu {
+    background-color: #83AFF2;
+    height: 60px;
+}
+
+.logout {
+    background-color: rgb(104, 169, 119);
+    transition: background-color 0.3s;
+}
+
+.logout:hover {
+        background-color: rgb(126, 194, 141);
+
+    }
+
+#main-content {
+}
+
+.top-menu ul {
+    height: 100%;
+    padding: 0px;
+}
+
+.header h1 {
+    margin-top: 0px;
+    padding-top: 30px;
+    font-size: 60px;
+    text-align: center;
+}
+
+#main-message {
+    font-size: 17pt;
+    text-align: center;
+}
+
+.container {
+    max-width: 750px;
+    padding-top: 15px;
+}
+.table-head-row{
+    padding: 14px;
+    background-color: rgb(0, 81, 105);
+    color: white;
+}
+.table-head{
+    padding: 20px;
+}
+.time-head{
+    padding-left:35px;
+}
+.time-body{
+    text-align: left;
+}
+

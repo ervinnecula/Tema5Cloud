@@ -1,0 +1,137 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="top-menu">
+        <ul>
+            <li class="home">@Html.ActionLink("Home", "Index", "Home")</li>
+            <li class="schedule">@Html.ActionLink("Schedule", "Schedule", "Home")</li>
+            <li class="logout">@Html.ActionLink("Logout", "Logout", "Logout")</li>
+
+        </ul>
+    </div>
+
+    <div id="main-content">
+        <div class="container">
+            <table id="schedule-table" border=1 frame=void rules=rows>
+                <thead class="table-head-row">
+                    <tr>
+                        <th class="table-head time-head"></th>
+                        <th class="table-head">Sunday</th>
+                        <th class="table-head">Monday</th>
+                        <th class="table-head">Tuesday</th>
+                        <th class="table-head">Wednesday</th>
+                        <th class="table-head">Thursday</th>
+                        <th class="table-head">Friday</th>
+                        <th class="table-head">Saturday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="table-data time-body" contenteditable onclick=clearTd(this)>Set Time</td>
+                        <td class="table-data" contenteditable onclick=clearTd(this)>-</td>
+                        <td class="table-data" contenteditable onclick=clearTd(this)>-</td>
+                        <td class="table-data" contenteditable onclick=clearTd(this)>-</td>
+                        <td class="table-data" contenteditable onclick=clearTd(this)>-</td>
+                        <td class="table-data" contenteditable onclick=clearTd(this)>-</td>
+                        <td class="table-data" contenteditable onclick=clearTd(this)>-</td>
+                        <td class="table-data" contenteditable onclick=clearTd(this)>-</td>
+                    </tr>
+            </table>
+
+            <button onclick="moreRows()">Add more</button>
+            <button onclick="getDataFromHTML()">Save</button>
+        </div>
+
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    <script type="text/javascript">
+        function moreRows() {
+            var table = document.getElementById("schedule-table");
+            var row = table.insertRow(-1);
+            var cellTime = row.insertCell(0);
+            cellTime.innerHTML = "Set time";
+            cellTime.setAttribute("contenteditable", "true");
+            cellTime.setAttribute("onClick", "clearTd(this)");
+
+            var cellSunday = row.insertCell(1);
+            cellSunday.innerHTML = "-";
+            cellSunday.setAttribute("contenteditable", "true");
+            cellSunday.setAttribute("onClick", "clearTd(this)");
+
+            var cellMonday = row.insertCell(2);
+            cellMonday.innerHTML = "-";
+            cellMonday.setAttribute("contenteditable", "true");
+            cellMonday.setAttribute("onClick", "clearTd(this)");
+
+            var cellTuesday = row.insertCell(3);
+            cellTuesday.innerHTML = "-";
+            cellTuesday.setAttribute("contenteditable", "true");
+            cellTuesday.setAttribute("onClick", "clearTd(this)");
+
+            var cellWednesday = row.insertCell(4);
+            cellWednesday.innerHTML = "-";
+            cellWednesday.setAttribute("contenteditable", "true");
+            cellWednesday.setAttribute("onClick", "clearTd(this)");
+
+            var cellThursday = row.insertCell(5);
+            cellThursday.innerHTML = "-";
+            cellThursday.setAttribute("contenteditable", "true");
+            cellThursday.setAttribute("onClick", "clearTd(this)");
+
+            var cellFriday = row.insertCell(6);
+            cellFriday.innerHTML = "-";
+            cellFriday.setAttribute("contenteditable", "true");
+            cellFriday.setAttribute("onClick", "clearTd(this)");
+
+            var cellSaturday = row.insertCell(7);
+            cellSaturday.innerHTML = "-";
+            cellSaturday.setAttribute("contenteditable", "true");
+            cellSaturday.setAttribute("onClick", "clearTd(this)");
+
+        }
+
+        function getDataFromHTML() {
+
+            var content = new Array();
+            var table = document.getElementById("schedule-table");
+            for (var i = 0, row; row = table.rows[i]; i++) {
+                content.push(i);
+                for (var j = 0, col; col = row.cells[j]; j++) {
+                    content.push(row.innerHTML);
+                }
+            }
+            alert("got here");
+            alert(content);
+            var jsonTable = JSON.stringify(content);
+            $.ajax({
+                type: "POST",
+                url: "Home/Schedule",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    alert('In Ajax');
+                },
+                data: jsonTable
+            });
+
+        }
+        function clearTd(target) {
+            target.innerHTML = "";
+        }
+    </script>
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

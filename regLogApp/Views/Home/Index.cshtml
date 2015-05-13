@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="top-menu">
+        <ul>
+            <li class="home">@Html.ActionLink("Home", "Index", "Home")</li>
+            <li class="schedule">@Html.ActionLink("Schedule", "Schedule", "Home")</li>
+            <li class="logout">@Html.ActionLink("Logout", "Logout", "Home")</li>
+
+        </ul>
+    </div>
+
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>
