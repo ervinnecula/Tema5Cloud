@@ -12,7 +12,7 @@ using WebGrease.Extensions;
 
 namespace regLogApp.Controllers
 {
-    [Authorize]
+    
     public class HomeController : Controller
     {
         private SimpleStorageService _storageService = new SimpleStorageService();
