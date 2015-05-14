@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="Tema5Cloud" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2015-04.2.6">
+  <Role name="regLogApp">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Storage" value="DefaultEndpointsProtocol=http;AccountName=cloud5ev;AccountKey=CeH+WPeJHPsR2VRvMUy/HTq3xE2ydASr9Kl0AhpaJF5+wq2pgta6tgpmoHQuN+pHsIPmJFg0pkfdXgyZvBfYdA==;" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>
