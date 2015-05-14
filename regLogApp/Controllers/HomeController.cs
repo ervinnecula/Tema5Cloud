@@ -8,6 +8,7 @@ using StorageService;
 using AzureSQLDB;
 using regLogApp.Models;
 using WebGrease.Css.Extensions;
+using WebGrease.Extensions;
 
 namespace regLogApp.Controllers
 {
@@ -16,6 +17,7 @@ namespace regLogApp.Controllers
     public class HomeController : Controller
     {
         private SimpleStorageService _storageService = new SimpleStorageService();
+        private string[] days = { "luni", "marti", "miercuri", "joi", "vineri", "sambata", "duminica" };
 
         public ActionResult Index()
         {
@@ -98,6 +100,7 @@ namespace regLogApp.Controllers
             {
                 if (user.IsValid(user.UserName, user.Password))
                 {
+                    Session["Username"] = user.UserName;
                     FormsAuthentication.SetAuthCookie(user.UserName, false);
                     return RedirectToAction("Index", "Home");
                 }
@@ -112,6 +115,64 @@ namespace regLogApp.Controllers
         [System.Web.Services.WebMethod]
         public string SendSchedule(string data)
         {
+           
+
+            string[] splitResult = data.Split(',');
+
+
+            //mergem pe randuri
+            for (var i = 0; i < splitResult.Length / 9; i++)
+            {
+                //mergem pe fiecare bucatica
+                string hour = null;
+                for (int j = 0; j < 9; j++)
+                {
+                    if (j == 1)
+                        hour = splitResult[9 * i + j];
+                    if (j > 2)
+                    {
+                        if (splitResult[9*i + j] != "-")
+                        {
+
+                           
+                            using (var context = new ervinEntities())
+                            {
+                                var inregistrare = new Schedule {Hour = hour, Day = days[j - 2]};
+                                context.Schedules.Add(inregistrare);
+                                context.SaveChanges();
+                            }
+                            //facem legatura dintre inregistrare si user;
+                            using (var context = new ervinEntities())
+                            {
+                                var user = null;
+                                foreach (var u in context.Users)
+                                {
+                                    if (u.UserName == Session["Username"].ToString())
+                                    {
+                                        user = u;
+                                    }
+                                }
+                                var user = context.Users.FirstOrDefault(x => x.UserName == Session["Username"].ToString());
+                                Schedule inregistrare = null;
+
+                                foreach (var schedule in context.Schedules)
+                                {
+                                    inregistrare = schedule;
+                                    if (schedule.Id > inregistrare.Id)
+                                        inregistrare = schedule;
+                                }
+                                var tabelLegatura = new UsersSchedule {Schedule = inregistrare, User = user};
+
+                                context.UsersSchedules.Add(tabelLegatura);
+                                context.SaveChanges();
+                            }
+                        }
+                    }
+                }
+            }
+
+
+
             return "Data received at " + DateTime.Now.ToString();
         }
      
